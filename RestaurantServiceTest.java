@@ -31,8 +31,6 @@ class RestaurantServiceTest {
     //<<<<<<<<<<<<<<<<<<<<SEARCHING>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-
-
     //>>>>>>>>>>>>>>>>>>>>>>ADMIN: ADDING & REMOVING RESTAURANTS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void remove_restaurant_should_reduce_list_of_restaurants_size_by_1() throws restaurantNotFoundException {
@@ -71,4 +69,29 @@ class RestaurantServiceTest {
         assertEquals(initialNumberOfRestaurants + 1,service.getRestaurants().size());
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void show_sum_of_order_when_menu_is_greater_than_1(){
+        List<String> items = new ArrayList<String>();        ;
+        items.add("Vegetable lasagne");
+        items.add("Sweet corn soup");
+        int result = service.orderTotalFromList(items,restaurant);
+        assertEquals(388,result);
+    }
+
+    @Test
+    public void show_price_of_selected_item_when_menu_is_equal_than_1(){
+        List<String> items = new ArrayList<String>();
+        items.add("Vegetable lasagne");
+        int result = service.orderTotalFromList(items, restaurant);
+        assertEquals(269,result);
+    }
+
+    @Test
+    public void show_sum_when_no_menu_selected_always_return_0() {
+        List<String> items = new ArrayList<String>();
+        int result = service.orderTotalFromList(items, restaurant);
+        assertEquals(0,result);
+    }
+
 }

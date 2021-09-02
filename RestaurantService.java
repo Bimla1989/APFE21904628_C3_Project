@@ -5,10 +5,10 @@ import java.util.List;
 public class RestaurantService {
     private static List<Restaurant> restaurants = new ArrayList<>();
 
-    public Restaurant findRestaurantByName(String restaurantName){
+    public Restaurant findRestaurantByName(String restaurantName) {
 
-        for (Restaurant restaurant : restaurants){
-            if (restaurant.getName().equals(restaurantName)){
+        for (Restaurant restaurant : restaurants) {
+            if (restaurant.getName().equals(restaurantName)) {
                 return restaurant;
             }
         }
@@ -32,4 +32,17 @@ public class RestaurantService {
     public List<Restaurant> getRestaurants() {
         return restaurants;
     }
-}
+
+           public int orderTotalFromList (List < String > items, Restaurant restaurant){
+            int total = 0;
+            List<Item> menuItems = restaurant.getMenu();
+            for (String itemName : items) {
+                for (Item menuItem : menuItems) {
+                    if (itemName.equals(menuItem.getName())) {
+                        total += menuItem.getPrice();
+                    }
+                }
+            }
+            return total;
+        }
+    }
